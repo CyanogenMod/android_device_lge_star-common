@@ -1,6 +1,6 @@
 #!/bin/sh
 
-mkdir -p ../../../vendor/lge/p990/proprietary
+mkdir -p ../../../vendor/lge/star-common/proprietary
 
 DIRS="
 app
@@ -12,7 +12,7 @@ lib/hw
 "
 
 for DIR in $DIRS; do
-	mkdir -p ../../../vendor/lge/p990/proprietary/$DIR
+	mkdir -p ../../../vendor/lge/star-common/proprietary/$DIR
 done
 
 FILES="
@@ -115,6 +115,6 @@ lib/libpvnvomx.so
 "
 
 for FILE in $FILES; do
-	adb pull system/$FILE ../../../vendor/lge/p990/proprietary/$FILE
+	adb pull system/$FILE ../../../vendor/lge/star-common/proprietary/$FILE
 done
 

@@ -1,5 +1,5 @@
 #
-# system.prop for p990
+# system.prop for star
 #
 rild.libpath=/system/lib/lge-ril.so
 rild.libargs=-d /dev/ttyspi0

@@ -159,6 +159,7 @@ public:
     virtual String8     getParameters(const String8& keys) = 0;
 
 
+virtual status_t	flushBuffers();
     // Return the amount of input frames lost in the audio driver since the last call of this function.
     // Audio driver is expected to reset the value to 0 and restart counting upon returning the current value by this function call.
     // Such loss typically occurs when the user space process is blocked longer than the capacity of audio driver buffers.
@@ -209,13 +210,6 @@ public:
      */
     virtual status_t    setMode(int mode) = 0;
 
-//setOutputMute(bool)
-//setOutputDevice(int, int)
-//setInputDevice(int)
-//unprepareOdmConfigDescriptor(int, void *, void *, void*)
-//prepareOdmConfigDescriptor(int, int, void *, void **, void*, void **)
-//destroyFx(void)
-//createFx(void)
     virtual status_t    setFMVolume(int mode);
     virtual status_t    setOutputMute(bool mode);
     virtual status_t    setForceRoutingMode(int mode);
@@ -265,6 +259,12 @@ public:
     /** set the fm volume. Range is between 0.0 and 1.0 */
     virtual status_t    setFmVolume(float volume) { return 0; }
 #endif
+virtual status_t setOutputDevice(int, int);
+virtual status_t setInputDevice(int);
+//virtual status_t unprepareOdmConfigDescriptor(int, void *, void *, void*);
+//virtual status_t prepareOdmConfigDescriptor(int, int, void *, void **, void*, void **);
+virtual status_t destroyFx(void);
+virtual status_t createFx(void);
 };
 
 // ----------------------------------------------------------------------------
