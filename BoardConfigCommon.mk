@@ -69,4 +69,3 @@ BOARD_USE_YUV420P_DEFAULT_COLORFORMAT := true
 #BOARD_HAVE_FM_RADIO := true
 #BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
 
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/lge/star-common/recovery/recovery_ui.c
