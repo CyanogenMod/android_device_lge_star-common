@@ -159,7 +159,6 @@ public:
     virtual String8     getParameters(const String8& keys) = 0;
 
 
-virtual status_t	flushBuffers();
     // Return the amount of input frames lost in the audio driver since the last call of this function.
     // Audio driver is expected to reset the value to 0 and restart counting upon returning the current value by this function call.
     // Such loss typically occurs when the user space process is blocked longer than the capacity of audio driver buffers.
