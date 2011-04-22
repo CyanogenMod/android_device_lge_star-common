@@ -110,6 +110,7 @@ PRODUCT_COPY_FILES += \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libpvnvomx.so:system/lib/libpvnvomx.s \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libdivxdrm.so:system/lib/libdivxdrm.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/liblge_divxdrm.so:system/lib/liblge_divxdrm.so \\
+    vendor/__VENDOR__/__DEVICE__/proprietary/lib/libnvodm_dtvtuner.so:system/lib/libnvodm_dtvtuner.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libtsparser.so:system/lib/libtsparser.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libhwmediaplugin.so:system/lib/libhwmediaplugin.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/libhwmediaplugin.so:obj/lib/libhwmediaplugin.so \\
