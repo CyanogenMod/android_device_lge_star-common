@@ -1,9 +1,6 @@
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
-# Inherit non-open-source blobs.
-$(call inherit-product-if-exists, vendor/lge/star-common/star-common-vendor.mk)
-
 DEVICE_PACKAGE_OVERLAYS += device/lge/star-common/overlay
 
 # Board-specific init
@@ -19,7 +16,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/setup-recovery:system/bin/setup-recovery \
     $(LOCAL_PATH)/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     $(LOCAL_PATH)/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
-    $(LOCAL_PATH)/prebuilt/wireless.ko:system/lib/modules/wireless.ko \
     $(LOCAL_PATH)/gps_brcm_conf.xml:system/etc/gps_brcm_conf.xml
 
 ## This is a patched version of libicuuc to include the old symbols
