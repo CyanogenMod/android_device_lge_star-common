@@ -5,7 +5,8 @@ DEVICE_PACKAGE_OVERLAYS += device/lge/star-common/overlay
 
 # Board-specific init
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/ueventd.tegra.rc:root/ueventd.tegra.rc
+    $(LOCAL_PATH)/ueventd.tegra.rc:root/ueventd.tegra.rc \
+    $(LOCAL_PATH)/init_recovery.rc:root/init_recovery.rc
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
