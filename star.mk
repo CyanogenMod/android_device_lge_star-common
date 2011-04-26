@@ -16,13 +16,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/rild:system/bin/rild \
     $(LOCAL_PATH)/prebuilt/setup-recovery:system/bin/setup-recovery \
     $(LOCAL_PATH)/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    $(LOCAL_PATH)/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
-    $(LOCAL_PATH)/gps_brcm_conf.xml:system/etc/gps_brcm_conf.xml
-
-## This is a patched version of libicuuc to include the old symbols
-#  needed by glgps
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/libicuuc.so:system/lib/libicuuc.so
+    $(LOCAL_PATH)/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf
 
 # Permission files
 PRODUCT_COPY_FILES += \

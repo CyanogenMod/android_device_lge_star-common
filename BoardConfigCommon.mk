@@ -50,11 +50,6 @@ WIFI_DRIVER_HAS_LGE_SOFTAP	:= true
 
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
 
-BOARD_USES_GPSSHIM := true
-BOARD_GPS_LIBRARIES := libgps
-## SUPL calls are causing crashes... :/
-BOARD_GPS_BAD_AGPS := true
-
 BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/lge/star-common/vibrator.c
 
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
