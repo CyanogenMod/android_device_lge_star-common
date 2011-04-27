@@ -34,7 +34,9 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
-        ro.opengles.version=131072
+        ro.opengles.version=131072 \
+        ro.telephony.call_ring.multiple=false \
+        ro.telephony.call_ring.delay=3000
 
 $(call inherit-product, build/target/product/full_base.mk)
 
