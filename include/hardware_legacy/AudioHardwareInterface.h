@@ -209,8 +209,6 @@ public:
      */
     virtual status_t    setMode(int mode) = 0;
 
-    virtual status_t    setFMVolume(int mode);
-    virtual status_t    setOutputMute(bool mode);
     virtual status_t    setForceRoutingMode(int mode);
     virtual status_t    getForceRoutingMode(int *mode);
 

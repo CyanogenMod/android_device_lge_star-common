@@ -79,6 +79,7 @@ public:
         virtual uint32_t    latency() const = 0;
         virtual float       msecsPerFrame() const = 0;
         virtual status_t    getPosition(uint32_t *position) = 0;
+        virtual int         getSessionId() = 0;
 
         // If no callback is specified, use the "write" API below to submit
         // audio data.
@@ -95,8 +96,6 @@ public:
         virtual void        flush() = 0;
         virtual void        pause() = 0;
         virtual void        close() = 0;
-        virtual int         getSessionId() = 0; // Moved down, new in GB and non-existing
-                                                // in the p990 props
     };
 
                         MediaPlayerBase() : mCookie(0), mNotify(0) {}
