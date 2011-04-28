@@ -44,6 +44,7 @@ PRODUCT_LOCALES += hdpi
 ## LGE stuffs
 PRODUCT_PACKAGES += \
     LGEServices \
+    bridgeutil \
     libbridge \
     libbridge_jni \
     libsecureclock \
