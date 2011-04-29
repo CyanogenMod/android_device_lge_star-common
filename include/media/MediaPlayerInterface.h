@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
+ * Copyright (C) 2011 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +20,7 @@
 
 #ifdef __cplusplus
 
-#define LOG_NDEBUG 0
+//#define LOG_NDEBUG 0
 #include <sys/types.h>
 #include <utils/Errors.h>
 #include <utils/KeyedVector.h>
@@ -108,6 +109,7 @@ public:
             const KeyedVector<String8, String8> *headers = NULL) = 0;
 
     virtual status_t    setDataSource(int fd, int64_t offset, int64_t length) = 0;
+    virtual status_t    addNewMetadataUpdate(int dunno) { LOGD("I has another dummy"); return NO_ERROR; };
     virtual status_t    setVideoSurface(const sp<ISurface>& surface) = 0;
     virtual status_t    prepare() = 0;
     virtual status_t    prepareAsync() = 0;
@@ -127,6 +129,10 @@ public:
 
     virtual void        setNotifyCallback(void* cookie, notify_callback_f notifyFunc) {
                             mCookie = cookie; mNotify = notifyFunc; }
+
+
+    virtual status_t    setLGAudioEffect(int ) { return NO_ERROR; };
+
     // Invoke a generic method on the player by using opaque parcels
     // for the request and reply.
     //
