@@ -53,6 +53,7 @@ PRODUCT_PACKAGES += \
     bridgeutil \
     libbridge \
     libbridge_jni \
+    secureclockd \
     libsecureclock \
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
