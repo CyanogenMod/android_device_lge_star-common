@@ -29,7 +29,6 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_USE_FROYO_LIBCAMERA := true
 BOARD_HAS_LGE_FFC := true
 
-BOARD_SUPPORTS_GRALLOC_FB_READ := ../../../device/lge/star-common/include/hardware/gralloc.h
 TARGET_OVERLAY_ALWAYS_DETERMINES_FORMAT := true
 
 TARGET_DONT_SET_AUDIO_AAC_FORMAT := true
