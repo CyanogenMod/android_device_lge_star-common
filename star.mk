@@ -47,7 +47,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
         ro.opengles.version=131072 \
         ro.telephony.call_ring.multiple=false \
-        ro.telephony.call_ring.delay=3000
+        ro.telephony.call_ring.delay=3000 \
+        ro.telephony.call_ring.absent=true
 
 $(call inherit-product, build/target/product/full_base.mk)
 
