@@ -49,6 +49,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
         ro.telephony.call_ring.multiple=false \
         ro.telephony.call_ring.delay=3000 \
         ro.telephony.call_ring.absent=true \
+        ro.telephony.force_short_dtmf=true \
         dalvik.vm.dexopt-data-only=1
 
 $(call inherit-product, build/target/product/full_base.mk)
