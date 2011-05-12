@@ -256,12 +256,6 @@ public:
     /** set the fm volume. Range is between 0.0 and 1.0 */
     virtual status_t    setFmVolume(float volume) { return 0; }
 #endif
-virtual status_t setOutputDevice(int, int);
-virtual status_t setInputDevice(int);
-//virtual status_t unprepareOdmConfigDescriptor(int, void *, void *, void*);
-//virtual status_t prepareOdmConfigDescriptor(int, int, void *, void **, void*, void **);
-virtual status_t destroyFx(void);
-virtual status_t createFx(void);
 };
 
 // ----------------------------------------------------------------------------
