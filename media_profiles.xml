@@ -107,10 +107,10 @@
 
     <EncoderProfile quality="low" fileFormat="3gp" duration="30">
       <Video codec="h264"
-             bitRate="384000"
+             bitRate="128000"
              width="176"
              height="144"
-             frameRate="30" />
+             frameRate="15" />
 
       <Audio codec="amrnb"
              bitRate="12200"
