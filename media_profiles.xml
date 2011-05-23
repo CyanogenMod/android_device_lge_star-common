@@ -83,7 +83,7 @@
       <Video codec="h264"
              bitRate="6000000"
              width="1920"
-             height="1080"
+             height="1088"
              frameRate="25" />
 
       <Audio codec="aac"
