@@ -60,6 +60,15 @@ enum player_type {
 typedef void (*notify_callback_f)(void* cookie, int msg, int ext1, int ext2);
 
 // abstract base class - use MediaPlayerInterface
+//
+// LGE implementation offsets
+// sendEvent - 0x7C
+// getMetetadata - 0x74
+// invoke - 0x70
+// reset - 0x54
+// suspend - 0x60
+// setNotifyCallback - 0x6C
+
 class MediaPlayerBase : public RefBase
 {
 public:
@@ -131,8 +140,6 @@ public:
                             mCookie = cookie; mNotify = notifyFunc; }
 
 
-    virtual status_t    setLGAudioEffect(int ) { return NO_ERROR; };
-
     // Invoke a generic method on the player by using opaque parcels
     // for the request and reply.
     //
@@ -153,6 +160,8 @@ public:
                                     Parcel *records) {
         return INVALID_OPERATION;
     };
+
+    virtual status_t    setLGAudioEffect(int ) { return NO_ERROR; };
 
     virtual void        sendEvent(int msg, int ext1=0, int ext2=0) { if (mNotify) mNotify(mCookie, msg, ext1, ext2); }
 
