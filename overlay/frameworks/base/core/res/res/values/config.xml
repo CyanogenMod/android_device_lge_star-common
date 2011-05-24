@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- This is causing problems on resume -->
-    <bool name="config_animateScreenLights">true</bool>
+    <!-- enable electron beam -->
+    <bool name="config_animateScreenLights">false</bool>
 
     <bool name="config_disableMenuKeyInLockScreen">true</bool>
 
