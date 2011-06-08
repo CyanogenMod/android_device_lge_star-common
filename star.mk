@@ -66,6 +66,7 @@ PRODUCT_PACKAGES += \
     libbridge_jni \
     secureclockd \
     libsecureclock \
-    screencap
+    screencap \
+    hwprops
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
