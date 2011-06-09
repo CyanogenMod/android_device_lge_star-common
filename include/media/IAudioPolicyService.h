@@ -41,7 +41,7 @@ public:
     //
     virtual status_t setDeviceConnectionState(AudioSystem::audio_devices device,
                                               AudioSystem::device_connection_state state,
-                                              const char *device_address) = 0;
+                                              const char *device_address) = 0; // 0x10 (16)
     virtual AudioSystem::device_connection_state getDeviceConnectionState(AudioSystem::audio_devices device,
                                                                           const char *device_address) = 0;
     virtual status_t setPhoneState(int state) = 0;
@@ -70,23 +70,23 @@ public:
     virtual void releaseInput(audio_io_handle_t input) = 0;
     virtual status_t initStreamVolume(AudioSystem::stream_type stream,
                                       int indexMin,
-                                      int indexMax) = 0;
+                                      int indexMax) = 0; // 0x48 (72, good)
     virtual status_t setStreamVolumeIndex(AudioSystem::stream_type stream, int index) = 0;
-    virtual status_t getStreamVolumeIndex(AudioSystem::stream_type stream, int *index) = 0;
-    /* LGE extensions */
-    virtual status_t setDeviceMaxVolume(AudioSystem::stream_type stream) { return 666; };
-    virtual status_t getDeviceMaxVolume(AudioSystem::stream_type stream) { return 666; };
-    virtual status_t setHeadsetGainControl(AudioSystem::stream_type stream) { return 666; };
-    virtual status_t getHeadsetGainControl(AudioSystem::stream_type stream) { return 666; };
-    /* End of LGE extensions */
-    virtual uint32_t getStrategyForStream(AudioSystem::stream_type stream) = 0;
-    virtual audio_io_handle_t getOutputForEffect(effect_descriptor_t *desc) = 0;
-    virtual status_t registerEffect(effect_descriptor_t *desc,
+    virtual status_t getStreamVolumeIndex(AudioSystem::stream_type stream, int *index) = 0; // 0x50 (80, good)
+    virtual uint32_t getStrategyForStream(AudioSystem::stream_type stream) = 0; // 0x54 (84, was wrong)
+    virtual audio_io_handle_t getOutputForEffect(effect_descriptor_t *desc) = 0; // 0x58
+    virtual status_t registerEffect(effect_descriptor_t *desc, 
                                     audio_io_handle_t output,
                                     uint32_t strategy,
                                     int session,
-                                    int id) = 0;
+                                    int id) = 0; // 0x5C
     virtual status_t unregisterEffect(int id) = 0;
+    /* LGE extensions */
+    virtual status_t setDeviceMaxVolume(AudioSystem::stream_type stream) { return 666; }; 
+    virtual status_t getDeviceMaxVolume(AudioSystem::stream_type stream) { return 666; }; // 0x68 (104, was wrong)
+    virtual status_t setHeadsetGainControl(AudioSystem::stream_type stream) { return 666; };
+    virtual status_t getHeadsetGainControl(AudioSystem::stream_type stream) { return 666; }; // 0x70 (112)
+    /* End of LGE extensions */
 };
 
 
