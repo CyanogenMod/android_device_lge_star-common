@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="entries_dual_led_colors">
-        <item>Buttons</item>
+    <string-array name="entries_dual_led_colors" translatable="false">
+        <item>Button Pulse</item>
         <item>None</item>
+    </string-array>
+
+    <string-array name="values_dual_led_colors" translatable="false">
+        <item>green</item>
+        <item>none</item>
     </string-array>
 
 </resources>
