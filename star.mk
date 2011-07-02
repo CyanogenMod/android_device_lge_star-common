@@ -43,7 +43,9 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
     frameworks/base/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
     frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
-    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
+    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+    frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml
+
 
 PRODUCT_PROPERTY_OVERRIDES += \
         ro.opengles.version=131072 \
@@ -67,6 +69,7 @@ PRODUCT_PACKAGES += \
     secureclockd \
     libsecureclock \
     screencap \
-    hwprops
+    hwprops \
+    com.android.future.usb.accessory
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
