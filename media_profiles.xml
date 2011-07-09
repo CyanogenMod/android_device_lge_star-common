@@ -79,7 +79,7 @@
   <!-- Each camcorder profile defines a set of predefined configuration parameters -->
   <CamcorderProfiles cameraId="0">
 
-    <EncoderProfile quality="hd" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="hd" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="12000000"
              width="1920"
@@ -92,7 +92,7 @@
              channels="2" />
     </EncoderProfile>
 
-    <EncoderProfile quality="high" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="high" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="6000000"
              width="1280"
@@ -130,7 +130,7 @@
 
   <CamcorderProfiles cameraId="1">
 
-    <EncoderProfile quality="high" fileFormat="3gp" duration="30">
+    <EncoderProfile quality="high" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="2000000"
              width="640"
