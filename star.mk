@@ -54,6 +54,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
         ro.telephony.call_ring.absent=true \
         ro.telephony.ril_class=lgestar \
         ro.hardware.respect_als=true \
+        ro.bt.bdaddr_path=/sys/devices/platform/star_bd_address/bdaddr_if \
         dalvik.vm.dexopt-data-only=1
 
 $(call inherit-product, build/target/product/full_base.mk)
