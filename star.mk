@@ -1,6 +1,3 @@
-# The gps config appropriate for this device
-$(call inherit-product, device/common/gps/gps_us_supl.mk)
-
 -include $(LOCAL_PATH)/bootsplash/rle.mk
 
 DEVICE_PACKAGE_OVERLAYS += device/lge/star-common/overlay
