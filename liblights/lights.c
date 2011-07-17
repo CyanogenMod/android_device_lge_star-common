@@ -15,7 +15,7 @@
  */
 
 
-//#define LOG_NDEBUG 0
+#define LOG_NDEBUG 0
 #define LOG_TAG "lights"
 
 #include <cutils/log.h>
@@ -158,7 +158,7 @@ set_light_notifications(struct light_device_t* dev,
 {
     int err = 0;
     int on = is_lit(state);
-    LOGV("Calling notification light with state %d",on);
+    LOGV("Calling notification light with state %d from 0x%.8x",on,state->color);
     pthread_mutex_lock(&g_lock);
     err = write_int(BUTTON_PULSE, on ? 1000 : 0);
     pthread_mutex_unlock(&g_lock);
