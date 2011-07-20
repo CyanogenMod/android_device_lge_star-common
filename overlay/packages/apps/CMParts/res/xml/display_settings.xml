@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- General settings -->
+    <PreferenceCategory android:key="general_category"
+        android:title="@string/general_title">
+
+        <!-- Backlight, not supported on the star
+        <PreferenceScreen android:key="backlight_settings"
+            android:title="@string/backlight_title" android:summary="@string/backlight_summary">
+            <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="com.cyanogenmod.cmparts"
+                android:targetClass="com.cyanogenmod.cmparts.activities.BacklightActivity" />
+        </PreferenceScreen>-->
+
+        <!-- Electron beam animations -->
+        <CheckBoxPreference android:key="electron_beam_animation_on"
+            android:title="@string/pref_electron_beam_animation_on" />
+        <CheckBoxPreference android:key="electron_beam_animation_off"
+            android:title="@string/pref_electron_beam_animation_off" />
+
+    </PreferenceCategory>
+
+    <!-- Rotation -->
+    <PreferenceCategory android:title="@string/rotation_category_title">
+        <CheckBoxPreference android:key="pref_rotation_0"
+            android:title="@string/pref_rotation_0_title" />
+        <CheckBoxPreference android:key="pref_rotation_90"
+            android:title="@string/pref_rotation_90_title" />
+        <CheckBoxPreference android:key="pref_rotation_180"
+            android:title="@string/pref_rotation_180_title" />
+        <CheckBoxPreference android:key="pref_rotation_270"
+            android:title="@string/pref_rotation_270_title" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
