@@ -2,12 +2,16 @@
 <resources>
 
     <string-array name="entries_dual_led_colors" translatable="false">
-        <item>Button Pulse</item>
+        <item>Dimmed Buttons</item>
+        <item>Slow Button Pulse</item>
+        <item>Fast Button Pulse</item>
         <item>None</item>
     </string-array>
 
     <string-array name="values_dual_led_colors" translatable="false">
         <item>green</item>
+        <item>red</item>
+        <item>blue</item>
         <item>none</item>
     </string-array>
 

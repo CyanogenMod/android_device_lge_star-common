@@ -47,8 +47,11 @@ char const*const BUTTON_BRIGHTNESS
 char const*const BUTTON_STATE
         = "/sys/class/leds/buttonpanel/enable";
 
+char const*const BUTTON_PULSE_INTERVAL
+        = "/sys/class/leds/buttonpanel/pulse_interval";
+
 char const*const BUTTON_PULSE
-        = "/sys/class/leds/buttonpanel/blink";
+        = "/sys/class/leds/buttonpanel/pulse";
 
 char const*const AUTO_BRIGHT_FILE
         = "/sys/devices/platform/star_aat2870.0/lsensor_onoff";
@@ -158,9 +161,29 @@ set_light_notifications(struct light_device_t* dev,
 {
     int err = 0;
     int on = is_lit(state);
+    int red, green, blue = 0;
+
+    red = (state->color >> 16) & 0xff;
+    green = (state->color >> 8) & 0xff;
+    blue = (state->color) & 0xff;
+
     LOGV("Calling notification light with state %d",on);
     pthread_mutex_lock(&g_lock);
-    err = write_int(BUTTON_PULSE, on ? 1000 : 0);
+    if (!on) {
+        err = write_int(BUTTON_PULSE, 0);
+        err = write_int(BUTTON_STATE, 0);
+    } else {
+        if (green) {
+            err = write_int(BUTTON_BRIGHTNESS, 16);
+            if (!err) err = write_int(BUTTON_STATE, 1);
+        } else if (red) {
+            err = write_int(BUTTON_PULSE, 2000);
+            if (!err) err = write_int(BUTTON_PULSE_INTERVAL, 20000);
+        } else if (blue) {
+            err = write_int(BUTTON_PULSE, 1000);
+            if (!err) err = write_int(BUTTON_PULSE_INTERVAL, 3000);
+        }
+    }
     pthread_mutex_unlock(&g_lock);
     return err;
 }
