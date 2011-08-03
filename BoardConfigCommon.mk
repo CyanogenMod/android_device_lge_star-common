@@ -1,4 +1,5 @@
 USE_CAMERA_STUB := false
+BOARD_HAS_LGE_FFC := true
 
 # inherit from the proprietary version
 -include vendor/lge/star-common/BoardConfigVendor.mk
