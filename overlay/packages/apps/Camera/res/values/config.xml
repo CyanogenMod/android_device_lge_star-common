@@ -18,9 +18,6 @@
 -->
 
 <resources>
-    <!-- High Framerate 1080p for Nvidia Cameras -->
-    <bool name="supportsNvHighBitrateFullHD">true</bool>
-    <!-- Autofocus parameters -->
-    <string name="touchFocusParameter">nv-areas-to-focus</string>
-    <bool name="touchFocusNeedsRect">true</bool>
+	<!-- High Framerate 1080p for Nvidia Cameras -->
+	<bool name="supportsNvHighBitrateFullHD">true</bool>
 </resources>
