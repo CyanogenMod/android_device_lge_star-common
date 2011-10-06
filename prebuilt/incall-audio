@@ -1,0 +1,46 @@
+#!/system/bin/sh
+#
+# Runtime adjustment of wm8994 amp for calls on the LGE Star
+#
+# Copyright (c) 2011, The CyanogenMod Project. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+
+
+### Run this when going back to normal state
+call_stopped () 
+{
+  sleep 2
+  echo "0x18 0x11d" > /sys/devices/platform/star_wm8994/data
+  echo "0x1a 0x10b" > /sys/devices/platform/star_wm8994/data
+  echo "0x1b 0x10d" > /sys/devices/platform/star_wm8994/data
+  echo "0x25 0x158" > /sys/devices/platform/star_wm8994/data
+}
+
+# init sends SIGTERM on ctl.stop for service
+trap "call_stopped" TERM INT
+
+## wait for the default values to kick in before adjusting
+grep -q "wm8994 reg 0x  18 : 0x   f" /sys/devices/platform/star_wm8994/data
+while [ $? -ne 0 ]; do
+  sleep 1
+  grep -q "wm8994 reg 0x  18 : 0x   f" /sys/devices/platform/star_wm8994/data
+done
+
+### This is what we want while in-call. Values taken from
+##  p999's v21e nvrm_daemon
+# WM8994_LEFT_LINE_INPUT_1_2_VOLUME
+echo "0x18 0x111" > /sys/devices/platform/star_wm8994/data
+# WM8994_RIGHT_LINE_INPUT_3_4_VOLUME
+echo "0x1a 0x10b" > /sys/devices/platform/star_wm8994/data
+# WM8994_RIGHT_LINE_INPUT_1_2_VOLUME
+echo "0x1b 0x10f" > /sys/devices/platform/star_wm8994/data
+# WM8994_CLASSD
+echo "0x25 0x17f" > /sys/devices/platform/star_wm8994/data
+
+# wait for the signal...
+sleep 86400
