@@ -34,13 +34,13 @@ done
 ### This is what we want while in-call. Values taken from
 ##  p999's v21e nvrm_daemon
 # WM8994_LEFT_LINE_INPUT_1_2_VOLUME
-echo "0x18 0x111" > /sys/devices/platform/star_wm8994/data
+echo "0x18 0x11a" > /sys/devices/platform/star_wm8994/data
 # WM8994_RIGHT_LINE_INPUT_3_4_VOLUME
-echo "0x1a 0x10b" > /sys/devices/platform/star_wm8994/data
+echo "0x1a 0x10d" > /sys/devices/platform/star_wm8994/data
 # WM8994_RIGHT_LINE_INPUT_1_2_VOLUME
-echo "0x1b 0x10f" > /sys/devices/platform/star_wm8994/data
+echo "0x1b 0x106" > /sys/devices/platform/star_wm8994/data
 # WM8994_CLASSD
-echo "0x25 0x17f" > /sys/devices/platform/star_wm8994/data
+echo "0x25 0x178" > /sys/devices/platform/star_wm8994/data
 
 # wait for the signal...
 sleep 86400
