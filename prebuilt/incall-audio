@@ -24,8 +24,6 @@ call_stopped ()
 # init sends SIGTERM on ctl.stop for service
 trap "call_stopped" TERM INT
 
-# WM8994_INPUT_MIXER_3
-echo "0x29 0x25" > /sys/devices/platform/star_wm8994/data
 ## wait for the default values to kick in before adjusting
 grep -q "wm8994 reg 0x  18 : 0x   f" /sys/devices/platform/star_wm8994/data
 while [ $? -ne 0 ]; do
@@ -43,8 +41,6 @@ echo "0x1a 0x10b" > /sys/devices/platform/star_wm8994/data
 echo "0x1b 0x10f" > /sys/devices/platform/star_wm8994/data
 # WM8994_CLASSD
 echo "0x25 0x17f" > /sys/devices/platform/star_wm8994/data
-# WM8994_INPUT_MIXER_3
-echo "0x29 0x25" > /sys/devices/platform/star_wm8994/data
 
 # wait for the signal...
 sleep 86400
