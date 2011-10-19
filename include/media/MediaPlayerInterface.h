@@ -117,7 +117,6 @@ public:
             const char *url,
             const KeyedVector<String8, String8> *headers = NULL) = 0;
 
-    virtual status_t    setDataSource(void const *, int, void *) { return NO_ERROR; };
     virtual status_t    setDataSource(int fd, int64_t offset, int64_t length) = 0;
     virtual status_t    setVideoSurface(const sp<ISurface>& surface) = 0;
     virtual status_t    prepare() = 0;

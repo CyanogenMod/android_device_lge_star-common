@@ -505,10 +505,10 @@ static JNINativeMethod gMethods[] =
 static const char* const kClassPathName = "android/media/MediaPlayer";
 
 // This function only registers the native methods
-static int register_com_lge_bridge_BridgeService(JNIEnv *env)
+static int register_com_lge_bridges_BridgeService(JNIEnv *env)
 {
     return AndroidRuntime::registerNativeMethods(env,
-                "com/lge/bridge/BridgeService", gMethods, NELEM(gMethods));
+                "com/lge/bridges/BridgeService", gMethods, NELEM(gMethods));
 }
 
 jint JNI_OnLoad(JavaVM* vm, void* reserved)
@@ -522,7 +522,7 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved)
     }
     assert(env != NULL);
 
-    if (register_com_lge_bridge_BridgeService(env) < 0) {
+    if (register_com_lge_bridges_BridgeService(env) < 0) {
         LOGE("ERROR: BridgeService native registration failed\n");
         goto bail;
     }

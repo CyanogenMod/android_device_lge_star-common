@@ -8,7 +8,7 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := $(call all-java-files-under, java)
 
 LOCAL_SRC_FILES += \
-           java/com/lge/bridge/IBridgeService.aidl \
+           java/com/lge/bridges/IBridgeService.aidl \
            java/com/lge/secureclock/ISecureClockService.aidl
 
 LOCAL_PACKAGE_NAME := LGEServices 

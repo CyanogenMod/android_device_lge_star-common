@@ -44,6 +44,9 @@ public:
 
     virtual status_t    setMode(int mode);
 
+    status_t    setVoIPCallState(bool state);
+    status_t    getVoIPCallState(bool *state);
+
     status_t    setForceRoutingMode(int mode);
     status_t    getForceRoutingMode(int *mode);
 

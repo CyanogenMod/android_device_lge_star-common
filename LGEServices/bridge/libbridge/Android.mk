@@ -10,7 +10,7 @@ LOCAL_SHARED_LIBRARIES := libcutils libutils libbinder libhardware_legacy
 
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_MODULE := libbridge
+LOCAL_MODULE := libbridges
 
 LOCAL_PRELINK_MODULE := false
 
