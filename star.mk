@@ -63,6 +63,7 @@ PRODUCT_PACKAGES += \
     LGEServices \
     bridgeutil \
     libbridges \
+    libbridge \
     libbridge_jni \
     secureclockd \
     libsecureclock \
