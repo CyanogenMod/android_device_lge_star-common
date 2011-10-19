@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.lge.bridge;
+package com.lge.bridges;
 
 import android.content.Context;
 import android.content.Intent;
@@ -92,8 +92,8 @@ public class BridgeService extends IBridgeService.Stub
     private Vibrator mVibrator;
     private int mHdmiStatus = -1;
 
-    public static final String HDMI_STATUS = "com.lge.bridge.HDMI_STATUS";
-    public static final String HDMI_STATUS_REQUEST = "com.lge.bridge.HDMI_STATUS_REQUEST";
+    public static final String HDMI_STATUS = "com.lge.bridges.HDMI_STATUS";
+    public static final String HDMI_STATUS_REQUEST = "com.lge.bridges.HDMI_STATUS_REQUEST";
 
     public BridgeService(Context context)
     {

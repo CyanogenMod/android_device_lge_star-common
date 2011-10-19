@@ -1,4 +1,4 @@
-package com.lge.bridge;
+package com.lge.bridges;
 
 interface IBridgeService
 {

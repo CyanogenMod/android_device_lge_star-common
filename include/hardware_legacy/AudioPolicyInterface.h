@@ -64,10 +64,10 @@ public:
     // indicate a change in device connection status
     virtual status_t setDeviceConnectionState(AudioSystem::audio_devices device,
                                           AudioSystem::device_connection_state state,
-                                          const char *device_address) = 0;
+                                          const char *device_address) = 0; // x8 
     // retreive a device connection status
     virtual AudioSystem::device_connection_state getDeviceConnectionState(AudioSystem::audio_devices device,
-                                                                          const char *device_address) = 0;
+                                                                          const char *device_address) = 0; // 0xC (12)
     // indicate a change in phone state. Valid phones states are defined by AudioSystem::audio_mode
     virtual void setPhoneState(int state) = 0;
     // indicate a change in ringer mode
@@ -90,7 +90,7 @@ public:
                                         uint32_t samplingRate = 0,
                                         uint32_t format = AudioSystem::FORMAT_DEFAULT,
                                         uint32_t channels = 0,
-                                        AudioSystem::output_flags flags = AudioSystem::OUTPUT_FLAG_INDIRECT) = 0;
+                                        AudioSystem::output_flags flags = AudioSystem::OUTPUT_FLAG_INDIRECT) = 0; // 0x24 (36, good)
     // indicates to the audio policy manager that the output starts being used by corresponding stream.
     virtual status_t startOutput(audio_io_handle_t output,
                                  AudioSystem::stream_type stream,
@@ -113,7 +113,7 @@ public:
     // indicates to the audio policy manager that the input stops being used.
     virtual status_t stopInput(audio_io_handle_t input) = 0;
     // releases the input.
-    virtual void releaseInput(audio_io_handle_t input) = 0;
+    virtual void releaseInput(audio_io_handle_t input) = 0; // 0x40 (64, good)
 
     //
     // volume control functions
@@ -122,12 +122,12 @@ public:
     // initialises stream volume conversion parameters by specifying volume index range.
     virtual void initStreamVolume(AudioSystem::stream_type stream,
                                       int indexMin,
-                                      int indexMax) = 0;
+                                      int indexMax) = 0; // 0x44
 
     // sets the new stream volume at a level corresponding to the supplied index
-    virtual status_t setStreamVolumeIndex(AudioSystem::stream_type stream, int index) = 0;
+    virtual status_t setStreamVolumeIndex(AudioSystem::stream_type stream, int index) = 0; // 0x48
     // retreive current volume index for the specified stream
-    virtual status_t getStreamVolumeIndex(AudioSystem::stream_type stream, int *index) = 0;
+    virtual status_t getStreamVolumeIndex(AudioSystem::stream_type stream, int *index) = 0; // 0x4C (76)
 
     /* LGE extensions */
     virtual status_t setDeviceMaxVolume(AudioSystem::stream_type stream) { return 666; };
@@ -137,7 +137,7 @@ public:
     /* End of LGE extensions */
 
     // return the strategy corresponding to a given stream type
-    virtual uint32_t getStrategyForStream(AudioSystem::stream_type stream) = 0;
+    virtual uint32_t getStrategyForStream(AudioSystem::stream_type stream) = 0; // 0x60 (96, good)
 
     // Audio effect management
     virtual audio_io_handle_t getOutputForEffect(effect_descriptor_t *desc) = 0;
@@ -146,7 +146,7 @@ public:
                                     uint32_t strategy,
                                     int session,
                                     int id) = 0;
-    virtual status_t unregisterEffect(int id) = 0;
+    virtual status_t unregisterEffect(int id) = 0; // 0x6C, good
 
     //dump state
     virtual status_t    dump(int fd) = 0;

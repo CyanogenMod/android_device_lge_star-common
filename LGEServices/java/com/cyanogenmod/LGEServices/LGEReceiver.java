@@ -1,6 +1,6 @@
 package com.cyanogenmod.LGEServices;
 
-import com.lge.bridge.BridgeService;
+import com.lge.bridges.BridgeService;
 import com.lge.secureclock.SecureClockService;
 
 import android.content.Context;

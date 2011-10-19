@@ -36,7 +36,7 @@ import com.android.internal.telephony.ATResponse;
 import com.android.internal.telephony.IATService;
 import com.android.internal.telephony.ICallback;*/
 
-import com.lge.bridge.IBridgeService;
+import com.lge.bridges.IBridgeService;
 
 public class SecureClockService extends ISecureClockService.Stub
 {
@@ -99,7 +99,7 @@ public class SecureClockService extends ISecureClockService.Stub
     private void checkRtcReset()
     {
         Log.d(LOG_TAG, "checking rtc reset: start!");
-        IBridgeService bridge = IBridgeService.Stub.asInterface(ServiceManager.getService("bridge"));
+        IBridgeService bridge = IBridgeService.Stub.asInterface(ServiceManager.getService("bridges"));
 
         try
         {
@@ -301,7 +301,7 @@ public class SecureClockService extends ISecureClockService.Stub
 
         try
         {
-            IBridgeService bridge = IBridgeService.Stub.asInterface(ServiceManager.getService("bridge"));
+            IBridgeService bridge = IBridgeService.Stub.asInterface(ServiceManager.getService("bridges"));
             String resp = bridge.sendCommand("setSecureClockValue:" + event + "," + value);
             if (resp.equals("ok"))
             {
@@ -331,7 +331,7 @@ public class SecureClockService extends ISecureClockService.Stub
 
         try
         {
-            IBridgeService bridge = IBridgeService.Stub.asInterface(ServiceManager.getService("bridge"));
+            IBridgeService bridge = IBridgeService.Stub.asInterface(ServiceManager.getService("bridges"));
             String resp = bridge.sendCommand("getSecureClockValue:" + event);
 
             if (!resp.equals("error"))

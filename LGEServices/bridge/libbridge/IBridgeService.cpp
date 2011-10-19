@@ -64,6 +64,6 @@ public:
 
 }; // class BpBridgeService
 
-IMPLEMENT_META_INTERFACE(BridgeService, "com.lge.bridge.IBridgeService");
+IMPLEMENT_META_INTERFACE(BridgeService, "com.lge.bridges.IBridgeService");
 
 }; // namespace android

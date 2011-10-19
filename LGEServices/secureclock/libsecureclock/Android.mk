@@ -6,7 +6,7 @@ LOCAL_SRC_FILES := SecureClock.cpp ISecureClockService.cpp
 
 LOCAL_C_INCLUDES := $(call include-path-for, libharware_legacy)/hardware_legacy $(LOCAL_PATH)/../../include/ $(LOCAL_PATH)/../../include/bridge/
 
-LOCAL_SHARED_LIBRARIES := libcutils libutils libbinder libhardware_legacy libbridge
+LOCAL_SHARED_LIBRARIES := libcutils libutils libbinder libhardware_legacy libbridges
 
 LOCAL_MODULE_TAGS := optional
 

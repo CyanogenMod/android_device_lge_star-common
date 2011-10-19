@@ -8,7 +8,7 @@ LOCAL_SRC_FILES:= \
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../include/
 
-LOCAL_SHARED_LIBRARIES := libcutils libutils libc libbridge
+LOCAL_SHARED_LIBRARIES := libcutils libutils libc libbridges
 
 LOCAL_MODULE_TAGS := optional
 

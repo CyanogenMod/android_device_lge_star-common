@@ -32,7 +32,7 @@ static bool init()
     if (gBridgeService != NULL) return true;
 
     sp<IServiceManager> sm = defaultServiceManager();
-    sp<IBinder> binder = sm->getService(String16("bridge"));
+    sp<IBinder> binder = sm->getService(String16("bridges"));
     gBridgeService = interface_cast<IBridgeService>(binder);
 
     if (gBridgeService != NULL) return true;
