@@ -1,5 +1,5 @@
 USE_CAMERA_STUB := false
-BOARD_HAS_LGE_FFC := true
+COMMON_GLOBAL_CFLAGS += -DREVERSE_FFC_MIRROR_LOGIC
 
 # inherit from the proprietary version
 -include vendor/lge/star-common/BoardConfigVendor.mk
