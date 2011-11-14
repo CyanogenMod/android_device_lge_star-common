@@ -43,6 +43,7 @@ import android.os.Vibrator;
 import android.os.SystemClock;
 import android.os.Environment;
 import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 
 import android.provider.Settings;
 /*import com.lge.provider.Andy_Flex;
@@ -95,6 +96,8 @@ public class BridgeService extends IBridgeService.Stub
     public static final String HDMI_STATUS = "com.lge.bridges.HDMI_STATUS";
     public static final String HDMI_STATUS_REQUEST = "com.lge.bridges.HDMI_STATUS_REQUEST";
 
+    private WakeLock mHDMIWakeLock;
+
     public BridgeService(Context context)
     {
         this.mContext = context;
@@ -109,6 +112,9 @@ public class BridgeService extends IBridgeService.Stub
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_BOOT_COMPLETED);
         mContext.registerReceiver(mReceiver, filter, null, null);
+        PowerManager pm
+                = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        this.mHDMIWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "HDMI");
 
     }
 
@@ -719,6 +725,13 @@ public class BridgeService extends IBridgeService.Stub
 
                 if (mIsBootComplete) mHandler.post(mHdmiStatusBroadcastTask);
 
+                if (status == 0) {
+                        if (mHDMIWakeLock.isHeld())
+                                mHDMIWakeLock.release();
+                } else {
+                        if (!mHDMIWakeLock.isHeld())
+                                mHDMIWakeLock.acquire();
+                }
                 return "ok";
             }
         }
