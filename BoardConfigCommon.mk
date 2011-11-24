@@ -1,5 +1,4 @@
-USE_CAMERA_STUB := false
-COMMON_GLOBAL_CFLAGS += -DREVERSE_FFC_MIRROR_LOGIC
+COMMON_GLOBAL_CFLAGS += -DREVERSE_FFC_MIRROR_LOGIC -DMISSING_EGL_EXTERNAL_IMAGE -DMISSING_EGL_PIXEL_FORMAT_YV12 -DMISSING_GRALLOC_BUFFERS
 
 # inherit from the proprietary version
 -include vendor/lge/star-common/BoardConfigVendor.mk
@@ -20,9 +19,8 @@ TARGET_SPECIFIC_HEADER_PATH := device/lge/star-common/include
 
 BOARD_HAS_NO_SELECT_BUTTON := true
 
-#BOARD_USES_GENERIC_AUDIO := true
-BOARD_PREBUILT_LIBAUDIO := true
-# Use dirty hack to allow froyo libaudio
+BOARD_USES_AUDIO_LEGACY := true
+#BOARD_USES_CAMERA_LEGACY := true
 
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
@@ -34,8 +32,8 @@ TARGET_DONT_SET_AUDIO_AAC_FORMAT := true
 BOARD_HAS_NO_MISC_PARTITION := true
 
 BOARD_WLAN_DEVICE := bcm4329
-WIFI_DRIVER_FW_STA_PATH		:= "/system/etc/wl/rtecdc.bin"
-WIFI_DRIVER_FW_AP_PATH		:= "/system/etc/wl/rtecdc-apsta.bin"
+WIFI_DRIVER_FW_PATH_STA		:= "/system/etc/wl/rtecdc.bin"
+WIFI_DRIVER_FW_PATH_AP		:= "/system/etc/wl/rtecdc-apsta.bin"
 WIFI_DRIVER_MODULE_NAME		:= "wireless"
 WIFI_DRIVER_MODULE_PATH		:= "/system/lib/modules/wireless.ko"
 WIFI_DRIVER_MODULE_ARG		:= "firmware_path=/etc/wl/rtecdc.bin nvram_path=/etc/wl/nvram.txt config_path=/data/misc/wifi/config"
@@ -64,3 +62,6 @@ TARGET_ELECTRONBEAM_FRAMES := 20
 TARGET_USES_GL_VENDOR_EXTENSIONS := true
 
 BOARD_FORCE_STATIC_A2DP := true
+
+BOARD_USE_SKIA_LCDTEXT := true
+TARGET_NEEDS_BLUETOOTH_INIT_DELAY := true

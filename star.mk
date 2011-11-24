@@ -8,19 +8,20 @@ PRODUCT_COPY_FILES += \
 
 # Board-specific init
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/ueventd.tegra.rc:root/ueventd.tegra.rc \
-    $(LOCAL_PATH)/init_recovery.rc:root/init_recovery.rc
+    $(LOCAL_PATH)/init_recovery.rc:root/init_recovery.rc \
+    $(LOCAL_PATH)/init.star.usb.rc:root/init.star.usb.rc
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
     $(LOCAL_PATH)/media_profiles.xml:system/etc/media_profiles.xml \
     $(LOCAL_PATH)/egl.cfg:system/lib/egl/egl.cfg \
-    $(LOCAL_PATH)/prebuilt/rild:system/bin/rild \
     $(LOCAL_PATH)/prebuilt/setup-recovery:system/bin/setup-recovery \
     $(LOCAL_PATH)/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
     $(LOCAL_PATH)/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf
 
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/nvodm_touch.idc:system/usr/idc/nvodm_touch.idc \
+    $(LOCAL_PATH)/prebuilt/nvodm_touch.kl:system/usr/keylayout/nvodm_touch.kl \
     $(LOCAL_PATH)/prebuilt/tegra-kbc.kl:system/usr/keylayout/tegra-kbc.kl \
     $(LOCAL_PATH)/prebuilt/tegra-kbc.kcm.bin:system/usr/keychars/tegra-kbc.kcm.bin \
     $(LOCAL_PATH)/prebuilt/qwerty.kl:system/usr/keylayout/qwerty.kl \
@@ -49,12 +50,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
         ro.telephony.call_ring.multiple=false \
         ro.telephony.call_ring.delay=3000 \
         ro.telephony.call_ring.absent=true \
-        ro.telephony.ril_class=lgestar \
+        ro.telephony.ril_class=LGEStarRIL \
         ro.hardware.respect_als=true \
         ro.bt.bdaddr_path=/sys/devices/platform/star_bd_address/bdaddr_if \
-        dalvik.vm.dexopt-data-only=1
+	debug.sf.electron_frames=42 \
+	ro.telephony.ril.v3=facilitylock,datacall,signalstrength,icccardstatus
 
-$(call inherit-product, build/target/product/full_base.mk)
+$(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
+
+$(call inherit-product, build/target/product/full_base_telephony.mk)
 
 PRODUCT_LOCALES += hdpi
 
@@ -69,6 +73,13 @@ PRODUCT_PACKAGES += \
     libsecureclock \
     screencap \
     hwprops \
+    audio.a2dp.default \
+    hwcomposer.default \
     com.android.future.usb.accessory
 
+# Set default USB interface
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+	persist.sys.usb.config=ptp
+
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+PRODUCT_MANUFACTURER := LGE
