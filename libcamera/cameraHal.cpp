@@ -189,12 +189,24 @@ CameraHAL_HandlePreviewData(const android::sp<android::IMemory>& dataPtr,
          if (retVal == NO_ERROR) {
             retVal = lcdev->window->lock_buffer(lcdev->window, bufHandle);
             if (retVal == NO_ERROR) {
+               int tries = 5;
+               int err = 0;
                void *vaddr;
 
-               if (0 == lcdev->gralloc->lock(lcdev->gralloc, *bufHandle,
+               err = lcdev->gralloc->lock(lcdev->gralloc, *bufHandle,
 			    GRALLOC_USAGE_SW_WRITE_MASK,
-                            0, 0, previewWidth, previewHeight, &vaddr)) {
-
+                            0, 0, previewWidth, previewHeight, &vaddr);
+               while (err && tries) {
+                  // Pano frames almost always need a retry...
+                  usleep(1000);
+                  //LOGW("RETRYING LOCK");
+                  lcdev->gralloc->unlock(lcdev->gralloc, *bufHandle);
+                  err = lcdev->gralloc->lock(lcdev->gralloc, *bufHandle,
+			    GRALLOC_USAGE_SW_WRITE_MASK,
+                            0, 0, previewWidth, previewHeight, &vaddr); 
+                  tries--;
+               }
+               if (!err) {
                   char *frame = (char *)(mHeap->base()) + offset;
                   // direct copy
                   //memcpy(vaddr, frame, size);
