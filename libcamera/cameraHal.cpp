@@ -53,6 +53,7 @@ struct legacy_camera_device {
 
    preview_stream_ops *window;
    gralloc_module_t const *gralloc;
+   int passed_frames;
 };
 
 /** camera_hw_device implementation **/
@@ -270,13 +271,19 @@ CameraHAL_DataCb(int32_t msg_type, const android::sp<android::IMemory>& dataPtr,
       hwParameters.getPreviewSize(&previewWidth, &previewHeight);
       //LOGV("CameraHAL_DataCb: preview size = %dx%d\n", previewWidth, previewHeight);
       CameraHAL_HandlePreviewData(dataPtr, previewWidth, previewHeight, lcdev);
-   } else if (lcdev->data_callback != NULL && lcdev->request_memory != NULL) {
-      camera_memory_t *clientData = CameraHAL_GenClientData(dataPtr, lcdev);
-      if (clientData != NULL) {
-         LOGV("CameraHAL_DataCb: Posting data to client\n");
-         lcdev->data_callback(msg_type, clientData, 0, NULL, lcdev->user);
+      if (!lcdev->passed_frames && lcdev->data_callback != NULL && lcdev->request_memory != NULL) {
+         /* Ugly hack. The device won't handle copying all the frames for
+          * userspace processing, since it'll dry out the memory and hog
+          * the CPU. So just pass one out of every 10 */
+         camera_memory_t *clientData = CameraHAL_GenClientData(dataPtr, lcdev);
+         if (clientData != NULL) {
+            LOGV("CameraHAL_DataCb: Posting data to client\n");
+            lcdev->data_callback(msg_type, clientData, 0, NULL, lcdev->user);
+         }
       }
    }
+   lcdev->passed_frames++;
+   lcdev->passed_frames%=10;
 }
 
 void
@@ -562,6 +569,8 @@ qcom_camera_preview_enabled(struct camera_device * device)
 int
 qcom_camera_store_meta_data_in_buffers(struct camera_device * device, int enable)
 {
+   /*struct legacy_camera_device *lcdev = to_lcdev(device);
+   int ret = lcdev->hwif->storeMetaDataInBuffers(enable);*/
    LOGV("qcom_camera_store_meta_data_in_buffers:\n");
    return NO_ERROR;
 }
