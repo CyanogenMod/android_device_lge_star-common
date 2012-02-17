@@ -54,7 +54,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
         ro.hardware.respect_als=true \
         ro.bt.bdaddr_path=/sys/devices/platform/star_bd_address/bdaddr_if \
 	debug.sf.electron_frames=42 \
-	ro.telephony.ril.v3=facilitylock,datacall,signalstrength,icccardstatus \
+	ro.telephony.ril.v3=facilitylock,datacall,signalstrength,icccardstatus,singlepdp \
 	dalvik.vm.dexopt-data-only=1
 
 $(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
