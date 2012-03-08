@@ -20,8 +20,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/nvodm_touch.idc:system/usr/idc/nvodm_touch.idc \
-    $(LOCAL_PATH)/prebuilt/nvodm_touch.kl:system/usr/keylayout/nvodm_touch.kl \
+    $(LOCAL_PATH)/prebuilt/star_synaptics.idc:system/usr/idc/star_synaptics.idc \
+    $(LOCAL_PATH)/prebuilt/star_synaptics.kl:system/usr/keylayout/star_synaptics.kl \
     $(LOCAL_PATH)/prebuilt/tegra-kbc.kl:system/usr/keylayout/tegra-kbc.kl \
     $(LOCAL_PATH)/prebuilt/tegra-kbc.kcm.bin:system/usr/keychars/tegra-kbc.kcm.bin \
     $(LOCAL_PATH)/prebuilt/qwerty.kl:system/usr/keylayout/qwerty.kl \
@@ -65,17 +65,13 @@ PRODUCT_LOCALES += hdpi
 
 ## LGE stuffs
 PRODUCT_PACKAGES += \
-    LGEServices \
     bridgeutil \
     libbridges \
     libbridge \
     libbridge_jni \
-    secureclockd \
-    libsecureclock \
     screencap \
     hwprops \
     audio.a2dp.default \
-    camera.tegra \
     hwcomposer.default \
     com.android.future.usb.accessory
 
