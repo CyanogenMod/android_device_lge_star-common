@@ -13,6 +13,8 @@ TARGET_ARCH_VARIANT_CPU := cortex-a9
 TARGET_ARCH_VARIANT_FPU := vfpv3-d16
 TARGET_HAVE_TEGRA_ERRATA_657451 := true
 
+TARGET_KERNEL_SOURCE := kernel/lge/lge-kernel-star
+
 TARGET_SPECIFIC_HEADER_PATH := device/lge/star-common/include
 
 #TARGET_USERIMAGES_USE_EXT4 := true
