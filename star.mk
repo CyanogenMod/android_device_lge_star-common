@@ -2,6 +2,9 @@
 
 DEVICE_PACKAGE_OVERLAYS += device/lge/star-common/overlay
 
+# Bootanimation
+TARGET_BOOTANIMATION_NAME := vertical-480x800
+
 # The splashscreen
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/initlogo.rle:root/initlogo.rle
