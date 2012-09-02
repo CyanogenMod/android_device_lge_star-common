@@ -74,7 +74,7 @@
     <bool name="config_bluetooth_adapter_quick_switch">false</bool>
 
     <string-array translatable="false" name="config_tether_usb_regexs">
-    <item>"usb0"</item>
+    <item>"rndis0"</item>
     </string-array>
 
     <!-- Array of ConnectivityManager.TYPE_xxxx values allowable for tethering -->
@@ -123,11 +123,12 @@
     </string-array>
 
     <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
-    <bool name="config_intrusiveNotificationLed">true</bool>
+    <!--bool name="config_intrusiveNotificationLed">true</bool-->
 
     <!-- Component name of the default wallpaper. This will be ImageWallpaper if not
                   specified -->
     <string name="default_wallpaper_component">com.android.phasebeam/.PhaseBeamWallpaper</string>
 
+    <bool name="config_autoBrightnessButtonKeyboard">false</bool>
 
 </resources>

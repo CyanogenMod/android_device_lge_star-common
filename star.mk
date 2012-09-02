@@ -1,19 +1,16 @@
--include $(LOCAL_PATH)/bootsplash/rle.mk
-
 DEVICE_PACKAGE_OVERLAYS += device/lge/star-common/overlay
-
-# The splashscreen
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/initlogo.rle:root/initlogo.rle
 
 # Board-specific init
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init_recovery.rc:root/init_recovery.rc \
+    $(LOCAL_PATH)/init.cm-star.rc:root/init.cm-star.rc \
     $(LOCAL_PATH)/init.star.usb.rc:root/init.star.usb.rc
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
     $(LOCAL_PATH)/media_profiles.xml:system/etc/media_profiles.xml \
+    $(LOCAL_PATH)/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/asound.conf:system/etc/asound.conf \
     $(LOCAL_PATH)/egl.cfg:system/lib/egl/egl.cfg \
     $(LOCAL_PATH)/prebuilt/setup-recovery:system/bin/setup-recovery \
     $(LOCAL_PATH)/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
@@ -45,17 +42,22 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml
 
 
+# Radio fixes
+FRAMEWORKS_BASE_SUBDIRS += ../../$(LOCAL_PATH)/ril/
+
 PRODUCT_PROPERTY_OVERRIDES += \
         ro.opengles.version=131072 \
         ro.telephony.call_ring.multiple=false \
         ro.telephony.call_ring.delay=3000 \
         ro.telephony.call_ring.absent=true \
-        ro.telephony.ril_class=LGEStarRIL \
+	ro.telephony.ril_class=LGEInfineon \
         ro.hardware.respect_als=true \
-        ro.bt.bdaddr_path=/sys/devices/platform/star_bd_address/bdaddr_if \
+        ro.bt.bdaddr_path=/sys/devices/platform/bd_address/bdaddr_if \
 	debug.sf.electron_frames=42 \
-	ro.telephony.ril.v3=facilitylock,datacall,signalstrength,icccardstatus,singlepdp \
-	dalvik.vm.dexopt-data-only=1
+	nv-camera-disable-early-graph=1 \
+	dalvik.vm.dexopt-data-only=1 \
+	sys.mem.max_hidden_apps=5
+
 
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
@@ -66,11 +68,9 @@ PRODUCT_LOCALES += hdpi
 ## LGE stuffs
 PRODUCT_PACKAGES += \
     bridgeutil \
-    libbridges \
     libbridge \
     libbridge_jni \
     screencap \
-    hwprops \
     audio.a2dp.default \
     hwcomposer.default \
     com.android.future.usb.accessory

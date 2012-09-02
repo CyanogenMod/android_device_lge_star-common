@@ -14,7 +14,7 @@ TARGET_ARCH_VARIANT_FPU := vfpv3-d16
 ARCH_ARM_HAVE_TLS_REGISTER := true
 ARCH_ARM_USE_NON_NEON_MEMCPY := true
 
-#TARGET_SPECIFIC_HEADER_PATH := device/lge/star-common/include
+TARGET_SPECIFIC_HEADER_PATH := device/lge/star-common/include
 
 #TARGET_USERIMAGES_USE_EXT4 := true
 
@@ -31,16 +31,18 @@ TARGET_DONT_SET_AUDIO_AAC_FORMAT := true
 
 BOARD_HAS_NO_MISC_PARTITION := true
 
-BOARD_WLAN_DEVICE           := bcmdhd
+BOARD_WLAN_DEVICE := bcm4329
 WIFI_DRIVER_FW_PATH_STA		:= "/system/etc/wl/rtecdc.bin"
 WIFI_DRIVER_FW_PATH_AP		:= "/system/etc/wl/rtecdc-apsta.bin"
-WIFI_DRIVER_MODULE_NAME		:= "wireless"
-WIFI_DRIVER_MODULE_PATH		:= "/system/lib/modules/wireless.ko"
-WIFI_DRIVER_MODULE_ARG		:= "firmware_path=/etc/wl/rtecdc.bin nvram_path=/etc/wl/nvram.txt config_path=/data/misc/wifi/config"
-WPA_SUPPLICANT_VERSION      := VER_0_8_X
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
-WIFI_DRIVER_HAS_LGE_SOFTAP	:= true
-BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+WIFI_DRIVER_MODULE_NAME         := "wireless"
+WIFI_DRIVER_MODULE_PATH         := "/system/lib/modules/wireless.ko"
+WIFI_DRIVER_MODULE_ARG          := "firmware_path=/system/etc/wl/rtecdc.bin nvram_path=/etc/wl/nvram.txt config_path=/data/misc/wifi/config"
+WPA_SUPPLICANT_VERSION          := VER_0_6_X
+#BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_wext
+#BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
+WIFI_DRIVER_HAS_LGE_SOFTAP      := true
+BOARD_WPA_SUPPLICANT_DRIVER := WEXT
+BOARD_WEXT_NO_COMBO_SCAN       := true
 
 BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/lge/star-common/vibrator.c
 
@@ -52,9 +54,6 @@ TARGET_RECOVERY_PRE_COMMAND := "/system/bin/setup-recovery"
 
 BOARD_MOBILEDATA_INTERFACE_NAME := "vsnet0"
 
-
-BOARD_FORCE_STATIC_A2DP := true
-
 BOARD_USE_SKIA_LCDTEXT := true
 USE_OPENGL_RENDERER := true
 BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
@@ -63,3 +62,5 @@ TARGET_NEEDS_BLUETOOTH_INIT_DELAY := true
 #MAX_EGL_CACHE_SIZE := 10
 
 COMMON_GLOBAL_CFLAGS += -DICS_AUDIO_BLOB -DICS_CAMERA_BLOB
+
+BOARD_SYSFS_LIGHT_SENSOR := "/sys/devices/platform/i2c-gpio.5/i2c-5/5-0060/alc"
