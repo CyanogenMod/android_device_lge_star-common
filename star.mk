@@ -68,6 +68,7 @@ PRODUCT_LOCALES += hdpi
 ## LGE stuffs
 PRODUCT_PACKAGES += \
     bridgeutil \
+    lights.star \
     libbridge \
     libbridge_jni \
     screencap \
