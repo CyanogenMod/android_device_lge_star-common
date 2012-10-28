@@ -15,6 +15,8 @@
  */
 
 #include <sys/ioctl.h>
+#include <sys/resource.h>
+#include <sys/prctl.h>
 #include <pthread.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -28,6 +30,7 @@
 
 static pthread_t vibstop_pt;
 static int tspfd = -1;
+static short stop_pending;
 
 int vibrator_exists()
 {
@@ -44,11 +47,33 @@ static void* stopvib( void * timer ) {
     int fd;
     int dummy = 0;
 
-    fd = open("/dev/tspdrv",O_RDWR);
+    /* Don't let anything stall the cancellation */
+    setpriority(PRIO_PROCESS, 0, -5);
+
+    /* Name the thread to help identify lost ones... */
+    char thread_name[64] = "cmTspDrvStop";
+    prctl(PR_SET_NAME, (unsigned long) &thread_name, 0, 0, 0);
+
     usleep((int)timer*1000);
-    ioctl(fd,TSPDRV_DISABLE_AMP,&dummy);
-    close(fd);
+    if (stop_pending) {
+        fd = open("/dev/tspdrv",O_RDWR);
+        ioctl(fd,TSPDRV_DISABLE_AMP,&dummy);
+        close(fd);
+    }
     return 0;
+}
+
+static void enable_stop_thread(int timeout_ms) {
+    pthread_create( &vibstop_pt, NULL, stopvib, (void *)timeout_ms);
+    stop_pending = 1;
+}
+
+static void disable_stop_thread() {
+    /* This may create dangling threads, but since bionic has no
+       pthread_cancel(), it's the best I can come up with */
+    if (stop_pending && !pthread_kill( vibstop_pt, 0 ))
+        pthread_detach( vibstop_pt );
+    stop_pending = 0;
 }
 
 int sendit(int timeout_ms)
@@ -66,16 +91,17 @@ int sendit(int timeout_ms)
 
     if (timeout_ms) {
         ioctl(tspfd,TSPDRV_DISABLE_AMP,&actuator);
-        pthread_join( vibstop_pt, NULL );
+        disable_stop_thread();
         ioctl(tspfd,TSPDRV_ENABLE_AMP,&actuator);
         ioctl(tspfd,TSPDRV_MAGIC_NUMBER,&actuator);
         write(tspfd,&vibsample,4); // First hit triggers the sample processing
         write(tspfd,&vibsample,4); // Now do it for real
-        pthread_create( &vibstop_pt, NULL, stopvib, (void *)timeout_ms);
+        enable_stop_thread(timeout_ms);
     } else {
         ioctl(tspfd,TSPDRV_DISABLE_AMP,&actuator);
-        pthread_join( vibstop_pt, NULL );
+        disable_stop_thread();
     }
 
     return 0;
 }
+
