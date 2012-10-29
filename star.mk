@@ -76,6 +76,9 @@ PRODUCT_PACKAGES += \
     hwcomposer.default \
     com.android.future.usb.accessory
 
+# Enable Torch
+PRODUCT_PACKAGES += Torch
+
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp,adb
