@@ -71,9 +71,11 @@ static void enable_stop_thread(int timeout_ms) {
 static void disable_stop_thread() {
     /* This may create dangling threads, but since bionic has no
        pthread_cancel(), it's the best I can come up with */
+    int dummy = 0;
     if (stop_pending && !pthread_kill( vibstop_pt, 0 ))
         pthread_detach( vibstop_pt );
     stop_pending = 0;
+    ioctl(tspfd,TSPDRV_DISABLE_AMP,&dummy);
 }
 
 int sendit(int timeout_ms)
@@ -90,7 +92,6 @@ int sendit(int timeout_ms)
         tspfd = open("/dev/tspdrv",O_RDWR);
 
     if (timeout_ms) {
-        ioctl(tspfd,TSPDRV_DISABLE_AMP,&actuator);
         disable_stop_thread();
         ioctl(tspfd,TSPDRV_ENABLE_AMP,&actuator);
         ioctl(tspfd,TSPDRV_MAGIC_NUMBER,&actuator);
@@ -98,7 +99,6 @@ int sendit(int timeout_ms)
         write(tspfd,&vibsample,4); // Now do it for real
         enable_stop_thread(timeout_ms);
     } else {
-        ioctl(tspfd,TSPDRV_DISABLE_AMP,&actuator);
         disable_stop_thread();
     }
 
