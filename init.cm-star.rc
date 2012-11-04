@@ -8,7 +8,7 @@ on init
     symlink /system/bin /bin
 
 # create mountpoints for storage
-    mkdir /storage 0111 system system
+    mkdir /storage 0050 system sdcard_r
     mkdir /storage/sdcard0 0000 system system
     mkdir /storage/sdcard1 0000 system system
     symlink /storage/sdcard0 /sdcard
