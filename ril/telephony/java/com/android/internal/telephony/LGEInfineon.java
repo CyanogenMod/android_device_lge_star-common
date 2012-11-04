@@ -47,7 +47,7 @@ public class LGEInfineon extends RIL implements CommandsInterface {
 
     protected int mCallState = TelephonyManager.CALL_STATE_IDLE;
 
-    static final int RIL_REQUEST_HANG_UP_CALL = 182;
+    private int RIL_REQUEST_HANG_UP_CALL = 182;
 
     @Override
     public void
@@ -73,6 +73,7 @@ public class LGEInfineon extends RIL implements CommandsInterface {
     }
 
     static final int RIL_UNSOL_LGE_SIM_STATE_CHANGED = 1060;
+    static final int RIL_UNSOL_LGE_SIM_STATE_CHANGED_NEW = 1061;
 
     @Override
     protected void
@@ -83,7 +84,9 @@ public class LGEInfineon extends RIL implements CommandsInterface {
 
         switch(response) {
             case RIL_UNSOL_ON_USSD: ret =  responseStrings(p); break;
-            case RIL_UNSOL_LGE_SIM_STATE_CHANGED: ret =  responseVoid(p); break;
+            case 1080: ret =  responseVoid(p); break; // RIL_UNSOL_LGE_FACTORY_READY
+            case RIL_UNSOL_LGE_SIM_STATE_CHANGED:
+            case RIL_UNSOL_LGE_SIM_STATE_CHANGED_NEW: ret =  responseVoid(p); break;
             default:
                 // Rewind the Parcel
                 p.setDataPosition(dataPosition);
@@ -114,7 +117,12 @@ public class LGEInfineon extends RIL implements CommandsInterface {
                         new AsyncResult (null, resp, null));
                 }
                 break;
+            case 1080: // RIL_UNSOL_LGE_FACTORY_READY (NG)
+                /* Adjust request IDs */
+                RIL_REQUEST_HANG_UP_CALL = 206;
+                break;
             case RIL_UNSOL_LGE_SIM_STATE_CHANGED:
+            case RIL_UNSOL_LGE_SIM_STATE_CHANGED_NEW:
                 if (RILJ_LOGD) unsljLog(response);
 
                 if (mIccStatusChangedRegistrants != null) {
