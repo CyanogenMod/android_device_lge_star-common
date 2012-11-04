@@ -104,6 +104,7 @@ public class LGEInfineon extends RIL implements CommandsInterface {
                     resp[0] = ((String[])ret)[0];
                     resp[1] = null;
                 }
+                if (resp[1].length()%2 == 0 && resp[1].matches("[0-9A-F]+")) {
                     try { 
                         resp[1] = new String(hexStringToByteArray(resp[1]), "UTF-16");
                     } catch (java.io.UnsupportedEncodingException uex) { 
@@ -111,6 +112,7 @@ public class LGEInfineon extends RIL implements CommandsInterface {
                     } catch (java.io.IOException iox) { 
                         // you will get here if the original sequence wasn't UTF-8 or ASCII 
                     } 
+                }
                 if (RILJ_LOGD) unsljLogMore(response, resp[0]);
                 if (mUSSDRegistrant != null) {
                     mUSSDRegistrant.notifyRegistrant(
