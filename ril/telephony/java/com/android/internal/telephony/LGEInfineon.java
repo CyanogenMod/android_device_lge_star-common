@@ -185,10 +185,10 @@ public class LGEInfineon extends RIL implements CommandsInterface {
          * hourbreak[1] (tz offset), parcelitem[2] (dst) */
 
         String [] parcelitem = parceldata.split(",");
-        String [] hourbreak = parcelitem[1].split("[\\+-]");
+        String [] hourbreak = parcelitem[1].split("[+\\-]");
         parceldata = parcelitem[0] + "," + hourbreak[0]; // assuming there is always one comma at least
         tzoffset = Integer.parseInt(hourbreak[1]); // TZ diff in quarter-hours
-        if (parcelitem[1].matches("-")) tzoffset *= -1;
+        if (parcelitem[1].contains("-")) tzoffset *= -1;
 
         parcelextra = (parcelitem.length > 2 ? parcelitem[2] : "0");
         dst = Integer.parseInt(parcelextra);
