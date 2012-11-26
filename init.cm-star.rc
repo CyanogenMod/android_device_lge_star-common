@@ -2,16 +2,25 @@ import init.star.usb.rc
 
 on init
     export TMPDIR /data/local/tmp
-    export EXTERNAL_STORAGE /storage/sdcard0
-
-# Backward compatibility
-    symlink /system/bin /bin
 
 # create mountpoints for storage
     mkdir /storage 0050 system sdcard_r
-    mkdir /storage/sdcard0 0000 system system
     mkdir /storage/sdcard1 0000 system system
-    symlink /storage/sdcard0 /sdcard
+
+    mkdir /mnt/shell/sdcard 0700 shell shell
+    mkdir /storage/sdcard 0555 root root
+
+    export EXTERNAL_STORAGE /storage/sdcard/legacy
+
+    # Support legacy paths
+    symlink /storage/sdcard/legacy /sdcard
+    symlink /storage/sdcard/legacy /mnt/sdcard
+    symlink /storage/sdcard/legacy /storage/sdcard0
+    symlink /mnt/shell/sdcard/0 /storage/sdcard/legacy
+
+
+# Backward compatibility
+    symlink /system/bin /bin
 
     # Secure container public mount points.
     mkdir /mnt/asec  0700 root system
@@ -129,11 +138,15 @@ on boot
     chmod 0660 /sys/class/rfkill/rfkill0/type
     chmod 0660 /sys/class/rfkill/rfkill1/state
     chmod 0660 /sys/class/rfkill/rfkill1/type
+    chmod 0660 /proc/bluetooth/sleep/lpm
+    chmod 0660 /proc/bluetooth/sleep/btwrite
 
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill1/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill1/type
+    chown bluetooth bluetooth /proc/bluetooth/sleep/lpm
+    chown bluetooth bluetooth /proc/bluetooth/sleep/btwrite
     write /sys/class/rfkill/rfkill0/state 0
 ### End of LGE bluetooth
 
@@ -232,11 +245,3 @@ service vsnet2_down /system/bin/init.vsnet-down 2
    group radio cache inet misc
    disabled
    oneshot
-
-service hciattach /system/bin/brcm_patchram_plus --enable_hci \
-     --baudrate 3000000 --patchram /etc/firmware/bcm4329.hcd \
-     /dev/ttyHS2
-    class main
-    user bluetooth
-    group bluetooth net_bt_admin
-    disabled

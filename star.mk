@@ -41,15 +41,11 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml
 
 
-# Radio fixes
-FRAMEWORKS_BASE_SUBDIRS += ../../$(LOCAL_PATH)/ril/
-
 PRODUCT_PROPERTY_OVERRIDES += \
         ro.opengles.version=131072 \
         ro.telephony.call_ring.multiple=false \
         ro.telephony.call_ring.delay=3000 \
         ro.telephony.call_ring.absent=true \
-	ro.telephony.ril_class=LGEInfineon \
         ro.hardware.respect_als=true \
         ro.bt.bdaddr_path=/sys/devices/platform/bd_address/bdaddr_if \
 	debug.sf.electron_frames=42 \

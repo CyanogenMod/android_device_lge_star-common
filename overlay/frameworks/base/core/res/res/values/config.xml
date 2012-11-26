@@ -26,12 +26,6 @@
     <!-- The default iface on which to monitor data use -->
     <string name="config_datause_iface">vsnet0</string>
 
-    <!-- Package name providing network location support. -->
-    <string name="config_networkLocationProviderPackageName" translatable="false">com.google.android.location</string>
-
-    <!-- Package name providing geocoder API support. -->
-    <string name="config_geocodeProviderPackageName" translatable="false">com.google.android.location</string>
-
     <bool name="config_automatic_brightness_available">true</bool>
 
     <!-- These are all dummies, but need to be present to enable UI control of auto-brightness
@@ -68,10 +62,6 @@
         <item>255</item>
         <item>0</item>
     </integer-array>
-
-    <!-- Boolean indicating if current platform supports quick switch-on/off of
-                  Bluetooth Module -->
-    <bool name="config_bluetooth_adapter_quick_switch">false</bool>
 
     <string-array translatable="false" name="config_tether_usb_regexs">
     <item>"rndis0"</item>
@@ -128,7 +118,5 @@
     <!-- Component name of the default wallpaper. This will be ImageWallpaper if not
                   specified -->
     <string name="default_wallpaper_component">com.android.phasebeam/.PhaseBeamWallpaper</string>
-
-    <bool name="config_autoBrightnessButtonKeyboard">false</bool>
 
 </resources>

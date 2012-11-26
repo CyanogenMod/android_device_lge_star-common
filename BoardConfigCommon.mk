@@ -3,6 +3,7 @@
 # inherit from the proprietary version
 -include vendor/lge/star-common/BoardConfigVendor.mk
 
+TARGET_ARCH := arm
 TARGET_NO_BOOTLOADER := true
 TARGET_BOARD_PLATFORM := tegra
 TARGET_CPU_ABI := armeabi-v7a
@@ -68,3 +69,4 @@ BOARD_SYSFS_LIGHT_SENSOR := "/sys/devices/platform/i2c-gpio.5/i2c-5/5-0060/alc"
 TARGET_KERNEL_SOURCE := kernel/lge/star
 
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/fsl-tegra-udc/gadget/lun%d/file"
+BOARD_BLUEDROID_VENDOR_CONF := device/lge/star-common/vnd_bt.txt
