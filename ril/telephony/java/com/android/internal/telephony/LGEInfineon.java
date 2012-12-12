@@ -54,6 +54,29 @@ public class LGEInfineon extends RIL implements CommandsInterface {
 
     private int RIL_REQUEST_HANG_UP_CALL = 182;
 
+    /* We're not actually changing REQUEST_GET_IMEI, but it's one
+       of the first requests made after enabling the radio, and it
+       isn't repeated while the radio is on, so a good candidate to
+       inject initialization ops */
+
+    @Override
+    public void
+    getIMEI(Message result) {
+        // RIL_REQUEST_LGE_SEND_COMMAND
+        RILRequest rrLSC = RILRequest.obtain(
+                0x112, null);
+        rrLSC.mp.writeInt(1);
+        rrLSC.mp.writeInt(0);
+        send(rrLSC);
+
+        // The original (and unmodified) IMEI request
+        RILRequest rr = RILRequest.obtain(RIL_REQUEST_GET_IMEI, result);
+
+        if (RILJ_LOGD) riljLog(rr.serialString() + "> " + requestToString(rr.mRequest));
+
+        send(rr);
+    }
+
     @Override
     public void
     hangupWaitingOrBackground (Message result) {
