@@ -65,6 +65,14 @@ $(call inherit-product, build/target/product/full_base_telephony.mk)
 
 PRODUCT_LOCALES += hdpi
 
+## Ugly space-saving hack
+PRODUCT_PACKAGES += \
+    srec-en
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/10-movestuff.sh:system/addon.d/10-movestuff.sh
+
+
+
 ## LGE stuffs
 PRODUCT_PACKAGES += \
     bridgeutil \
