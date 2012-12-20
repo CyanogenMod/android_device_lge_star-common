@@ -55,9 +55,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	debug.sf.electron_frames=42 \
 	nv-camera-disable-early-graph=1 \
 	dalvik.vm.dexopt-data-only=1 \
-	sys.mem.max_hidden_apps=5 \
-	ro.lge.audio_soundexception=true
-
+	sys.mem.max_hidden_apps=4 \
+	ro.lge.audio_soundexception=true \
+	persist.service.zram=18
 
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
