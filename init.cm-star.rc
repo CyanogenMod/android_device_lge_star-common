@@ -10,13 +10,12 @@ on init
     mkdir /mnt/shell/sdcard 0700 shell shell
     mkdir /storage/sdcard 0555 root root
 
-    export EXTERNAL_STORAGE /storage/sdcard/legacy
+    export EXTERNAL_STORAGE /storage/sdcard
 
     # Support legacy paths
-    symlink /storage/sdcard/legacy /sdcard
-    symlink /storage/sdcard/legacy /mnt/sdcard
-    symlink /storage/sdcard/legacy /storage/sdcard0
-    symlink /mnt/shell/sdcard/0 /storage/sdcard/legacy
+    symlink /storage/sdcard /sdcard
+    symlink /storage/sdcard /mnt/sdcard
+    symlink /storage/sdcard /storage/sdcard0
 
 
 # Backward compatibility
