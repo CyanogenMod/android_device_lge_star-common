@@ -51,14 +51,23 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	debug.sf.electron_frames=42 \
 	nv-camera-disable-early-graph=1 \
 	dalvik.vm.dexopt-data-only=1 \
-	sys.mem.max_hidden_apps=5
-
+	sys.mem.max_hidden_apps=4 \
+	ro.lge.audio_soundexception=true \
+	persist.service.zram=18
 
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
 $(call inherit-product, build/target/product/full_base_telephony.mk)
 
 PRODUCT_LOCALES += hdpi
+
+## Ugly space-saving hack
+PRODUCT_PACKAGES += \
+    srec-en
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/10-movestuff.sh:system/addon.d/10-movestuff.sh
+
+
 
 ## LGE stuffs
 PRODUCT_PACKAGES += \
